@@ -1,7 +1,7 @@
 import re
 import sys, os
 import json
-import nltk
+from nltk import sent_tokenize
 
 if len(sys.argv) < 2:
   print('Insufficient arguments (python prepare.py script.txt)', file=sys.stderr)
@@ -38,9 +38,9 @@ with open(sys.argv[1], 'r') as scriptfile:
       scene_count += 1
       scene['scene_no'] = scene_count
       scene['meta'] = dict()
-      scene['meta']['view'] = header.group(2)
-      scene['meta']['location'] = header.group(4)
-      scene['meta']['time'] = header.group(6)
+      scene['meta']['view'] = header.group(2).strip()
+      scene['meta']['location'] = header.group(4).strip()
+      scene['meta']['time'] = header.group(6).strip()
 
     #Append to current scene
     else:
