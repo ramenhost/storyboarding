@@ -17,7 +17,6 @@ for filename in sorted(os.listdir('scenes'), key=helpers.natural_keys):
   for sindex, sentence in enumerate(ner_tags):
     for windex, word in enumerate(sentence):
       scene['processed'][sindex][windex].append(ner_tags[sindex][windex][1])
-    scene['processed'][sindex] = wordnet_optimize(scene['processed'][sindex])
   
   #write to test file for validating
   scenefile.seek(0)

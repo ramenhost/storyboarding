@@ -4,6 +4,7 @@ import json
 from nltk import sent_tokenize
 
 if len(sys.argv) < 2:
+  print(sys.argv)
   print('Insufficient arguments (python prepare.py script.txt)', file=sys.stderr)
   exit()
 
@@ -28,7 +29,7 @@ with open(sys.argv[1], 'r') as scriptfile:
     #New scene start
     header = re.search(pattern, line)
     if header:
-      scene['raw'] = nltk.sent_tokenize(raw_scene)
+      scene['raw'] = sent_tokenize(raw_scene)
       raw_scene = ''
       if not scene == None:
         json.dump(scene, file, indent=2)
@@ -46,6 +47,6 @@ with open(sys.argv[1], 'r') as scriptfile:
     else:
       raw_scene += line.lstrip().replace('\n', ' ')
 
-scene['raw'] = nltk.sent_tokenize(raw_scene)
+scene['raw'] = sent_tokenize(raw_scene)
 json.dump(scene, file, indent=2)
 file.close()

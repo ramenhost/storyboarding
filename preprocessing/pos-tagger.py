@@ -15,7 +15,7 @@ for filename in sorted(os.listdir('scenes'), key=helpers.natural_keys):
   scene = json.load(scenefile)
   scene['processed'] = list()
   for sentence in scene['raw']:
-    words = nltk.word_tokenize(sentence)
+    words = word_tokenize(sentence)
     words = list(filter(None, [re.sub(r'\W+', '', word) for word in words]))
     scene['processed'].append(words)
   scene['processed'] = pos_tagger.tag_sents(scene['processed'])

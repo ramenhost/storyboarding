@@ -1,9 +1,16 @@
 #!/bin/sh
-echo "Starting Preprocessor"
-python prepare.py $1
-echo "Starting POS Tagger"
-python pos-tagger.py
-echo "Starting NER Tagger"
-python ner-tagger.py
-echo "Starting Wordnet for NER"
-python wn-tagger.py
+source setup.sh
+echo "Starting Countdown"
+python3 prepare.py $1
+echo "Firing off"
+python3 -W ignore pos-tagger.py
+echo "Getting into space"
+python3 -W ignore ner-tagger.py
+echo "Inbetween the stars"
+python3 wn-tagger.py
+echo "Just a mile near the planet"
+python3 prop-suggest.py
+echo "Landing on the surface"
+python3 out.py
+echo "Mission Accomplished!"
+open out.txt
