@@ -11,6 +11,6 @@ python3 wn-tagger.py
 echo "Just a mile near the planet"
 python3 prop-suggest.py
 echo "Landing on the surface"
-python3 out.py
+python3 write-out.py
 echo "Mission Accomplished!"
 open out.txt

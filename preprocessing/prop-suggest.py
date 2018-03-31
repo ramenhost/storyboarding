@@ -2,6 +2,7 @@ import os, json
 import helpers
 from nltk.corpus import gutenberg as gb
 from gensim.models import Word2Vec
+from nltk.corpus import wordnet as wn
 
 w2v = Word2Vec(gb.sents())
 
@@ -15,8 +16,14 @@ for filename in sorted(os.listdir('scenes'), key=helpers.natural_keys):
   for prop in scene['PROP']:
     try:
       for suggestion in w2v.most_similar(prop, topn=3):
-        if suggestion[1] > 0.89 and suggestion not in scene['PROP'] and suggestion not in scene['RELATED-PROP']:
-          scene['RELATED-PROP'].append(suggestion[0])
+        if suggestion[1] > 0.89 and suggestion[0] not in scene['PROP'] and suggestion[0] not in scene['RELATED-PROP']:
+          options = wn.synsets(suggestion[0])
+          if len(options) > 2:
+            options = options[:2]
+          for option in options:
+            if option.lexname() == 'noun.artifact':
+              scene['RELATED-PROP'].append(suggestion[0])
+              break;
     except KeyError:
       continue
   #write to test file for validating

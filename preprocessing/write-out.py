@@ -29,6 +29,6 @@ for filename in sorted(os.listdir('scenes'), key=helpers.natural_keys):
   print(', '.join(scene['RELATED-PROP']))
   print('\nOrganisations involved: ')
   print(', '.join(scene['ORGANIZATION']))
-  print('\n--END OF SCENE--')
+  print('\n--END OF SCENE--\n')
 
 print('\n--THE END--\n')
