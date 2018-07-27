@@ -1,6 +1,4 @@
 # storyboarding
-Automated storyboard generation.
-
 Automatic generation of movie storyboards from raw movie scripts using NLP techniques.
 
 ## Documentation
